@@ -11,8 +11,8 @@ public class Main {
         JFrame frame = new JFrame();
         Gameplay gameplay = new Gameplay();
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int sizeWidth = 905;
-        int sizeHeight = 700;
+        int sizeWidth = 1505;
+        int sizeHeight = 900;
         int width = (dimension.width- sizeWidth) /2;
         int height = (dimension.height- sizeHeight) /2;
         frame.setBounds(width,height,sizeWidth,sizeHeight);
