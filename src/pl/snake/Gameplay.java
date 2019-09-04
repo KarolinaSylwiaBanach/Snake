@@ -84,7 +84,71 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        timer.start();
+        if(right){
+            for(int r=lengthOfSnake-1; r >=0 ;r--){
+                snakeYlength[r+1]=snakeYlength[r];
+            }
+            for(int r=lengthOfSnake;r>=0;r--){
+                if(r==0) {
+                    snakeXlength[r] = snakeXlength[r] + 25;
+                }else {
+                    snakeXlength[r] = snakeXlength[r - 1];
+                }
+                    if(snakeXlength[r]>850){
+                    snakeXlength[r]=25;
+                }
+            }
+            repaint();
+        }
+        if(left){
+            for(int r=lengthOfSnake-1; r >=0 ;r--){
+                snakeYlength[r+1]=snakeYlength[r];
+            }
+            for(int r=lengthOfSnake;r>=0;r--){
+                if(r==0) {
+                    snakeXlength[r] = snakeXlength[r] - 25;
+                }else {
+                    snakeXlength[r] = snakeXlength[r - 1];
+                }
+                if(snakeXlength[r]<25){
+                    snakeXlength[r]=850;
+                }
+            }
+            repaint();
+        }
+        if(down){
+            for(int r=lengthOfSnake-1; r >=0 ;r--){
+                snakeXlength[r+1]=snakeXlength[r];
+            }
+            for(int r=lengthOfSnake;r>=0;r--){
+                if(r==0) {
+                    snakeYlength[r] = snakeYlength[r] + 25;
+                }else {
+                    snakeYlength[r] = snakeYlength[r - 1];
+                }
+                if(snakeYlength[r]>626){
+                    snakeYlength[r]=75;
+                }
+            }
+            repaint();
+        }
+        if(up){
+            for(int r=lengthOfSnake-1; r >=0 ;r--){
+                snakeXlength[r+1]=snakeXlength[r];
+            }
+            for(int r=lengthOfSnake;r>=0;r--){
+                if(r==0) {
+                    snakeYlength[r] = snakeYlength[r] - 25;
+                }else {
+                    snakeYlength[r] = snakeYlength[r - 1];
+                }
+                if(snakeYlength[r]<75){
+                    snakeYlength[r]=626;
+                }
+            }
+            repaint();
+        }
     }
 
     @Override
@@ -94,7 +158,51 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            moves++;
+            right=true;
+            if(!left) {
+                right=true;
+            }else {
+                right=false;
+                left = true;
+            }
+            up=false;
+            down=false;
+        } else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            moves++;
+            left=true;
+            if(!right) {
+                left=true;
+            }else {
+                left=false;
+                right = true;
+            }
+            up=false;
+            down=false;
+        } else if(e.getKeyCode() == KeyEvent.VK_UP) {
+            moves++;
+            up = true;
+            if (!down) {
+                up = true;
+            } else {
+                up = false;
+                down = true;
+            }
+            right = false;
+            left = false;
+        }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            moves++;
+            down=true;
+            if(!up) {
+                down=true;
+            }else {
+                down=false;
+                up = true;
+            }
+            right=false;
+            left=false;
+        }
     }
 
     @Override
